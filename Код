@@ -28,12 +28,30 @@ class Stack:
     def is_empty(self):
         return len(self.items) == 0
 
+def print_menu():
+    print("Меню команд:")
+    print("push <n> - добавить в стек число n")
+    print("pop - удалить из стека последний элемент")
+    print("back - вывести значение последнего элемента в стеке")
+    print("size - вывести количество элементов в стеке")
+    print("clear - очистить стек")
+    print("exit - завершить работу")
+    print("Команда:")
+
 stack = Stack()
+
+print_menu()
 
 while True:
     command = input().split()
     if command[0] == "push":
-        stack.push(int(command[1]))
+        if len(command) != 2:
+            print("error")
+        else:
+            try:
+                stack.push(int(command[1]))
+            except ValueError:
+                print("error")
     elif command[0] == "pop":
         stack.pop()
     elif command[0] == "back":
@@ -47,3 +65,4 @@ while True:
         break
     else:
         print("error")
+        print_menu()
